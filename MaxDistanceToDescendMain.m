@@ -94,7 +94,7 @@ auxdata.a0    = a0;
 %-------------------------------------------------------------------%
 t0 = 0;           % Initial Time (sec)
 %tf = 1000;       % Final Time (sec)
-tf = 170;
+tf = 60;
 %h0 = 0;        % Initial Altitude (m)
 h0 = 12119.324;
 %hf = 19994.88/2; % Final Altitude (m)
@@ -161,7 +161,7 @@ guess.phase(iphase).control(:,2)        = [1; 1];
 %-------------------------------------------------------------------------%
 mesh.method       = 'hp-PattersonRao';
 mesh.tolerance    = 1e-6;
-mesh.maxiterations = 3;
+mesh.maxiterations = 5;
 mesh.colpointsmin = 4;
 mesh.colpointsmax = 10;
 NN = 10;
@@ -222,7 +222,6 @@ title('altitude versus velocity')
 legend('flight path','dynamic pressure limit')
 xlabel('V (m/s)')
 ylabel('Altitude (m)')
-grid on
 
 figure
 pp = plot(output.result.solution.phase.time,output.result.solution.phase(1).control);
@@ -240,7 +239,6 @@ plot(output.result.solution.phase.state(:,4),output.result.solution.phase.state(
 title('Altitude versus Downrange')
 xlabel('Downrange (m)')
 ylabel('Altitude (m)')
-grid on
 
 figure
 ax1 = subplot(221);
@@ -251,7 +249,6 @@ xlabel('Time (s)')
 ylabel('Altitude (m)');
 th = title('States Versus Time');
 set(th,'fontsize',20,'fontweight','bold')
-grid on
 
 subplot(222)
 ph= plot(output.result.solution.phase.time,output.result.solution.phase.state(:,2));
@@ -259,7 +256,6 @@ set(ph,'linewidth',2)
 set(gca,'fontsize',18)
 xlabel('Time (s)')
 ylabel('Velocity (m/s)');
-grid on
 
 subplot(223)
 ph= plot(output.result.solution.phase.time,output.result.solution.phase.state(:,3));
@@ -267,7 +263,6 @@ set(ph,'linewidth',2)
 set(gca,'fontsize',18)
 xlabel('Time (s)');
 ylabel('Flight Path Angle (radians)');
-grid on
 
 
 subplot(224)
@@ -276,7 +271,6 @@ set(ph,'linewidth',2)
 set(gca,'fontsize',18)
 xlabel('Time (s)');
 ylabel('Downrange (m)');
-grid on
  
 
 

@@ -52,17 +52,14 @@ throttle = input.phase.control(:,2);
   T  = sum(HH(:,1:6).*E,2);
   
   hdot = v.*sin(fpa);
-  %vdot = (throttle.*T-D)./m-g.*sin(fpa);
-  vdot = (throttle.*(T-D+Dmax)-Dmax)./m-g.*sin(fpa);
+  %vdot = (throttle.*(T-D+Dmax)-Dmax)./m-g.*sin(fpa);
+  vdot = (throttle.*T-D)./m-g.*sin(fpa);
   fpadot = g.*(u-cos(fpa))./v;
   xdot = v.*cos(fpa);  
-  
-  % input.auxdata.realthrottle = (vdot.*(m-g.*sin(fpa))+D)./T;
 
 %phaseout(1).dynamics = [hdot, vdot, fpadot];
 phaseout(1).dynamics = [hdot, vdot, fpadot, xdot];
 phaseout(1).path = q;
-phaseout(1).realthrottle = (throttle.*T + (1-throttle).*(D-Dmax))./T;
 %---------------------------------%
 % END: function maxDistanceDae.m %
 %---------------------------------%
